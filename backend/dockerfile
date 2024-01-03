@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3030
 
-CMD ["sh", "-c", "sleep 20 && yarn dev"]
+CMD ["sh", "-c", "sleep 10 && yarn dev"]

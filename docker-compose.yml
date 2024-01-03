@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+      - mysql
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3030:3030"
+    environment:
+      DB_HOST: mysql
+      DB_PASSWORD: familia123
+      DB_NAME: crud_desafio
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: familia123
+      MYSQL_DATABASE: crud_desafio
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
