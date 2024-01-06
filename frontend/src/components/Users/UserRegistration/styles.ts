@@ -1,4 +1,46 @@
 import styled from 'styled-components'
+import theme from '@/app/theme'
+
+export const HeadForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 15px;
+  width: 100%;
+
+  h2 {
+    width: 100%;
+    color: ${theme.colors.goldColor};
+    justify-content: left;
+    align-items: center;
+    font-size: 30px;
+    letter-spacing: 1px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 22px;
+    }
+  }
+`
+
+export const ButtonForm = styled.button`
+  align-items: center;
+  border: 1px solid;
+  border-radius: 25px;
+  color: ${theme.colors.goldColor};
+  font-size: 14px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  width: 200px;
+`
+
+export const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+`
 
 export const FormContainer = styled.form`
   align-items: flex-end;
@@ -8,8 +50,7 @@ export const FormContainer = styled.form`
   gap: 10px;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 35px 0 0;
-  padding: 20px 14px;
+  padding: 20px 10px;
   width: 100%;
 
   @media screen and (max-width: 600px) {
@@ -31,7 +72,8 @@ export const FormContainer = styled.form`
 `
 
 export const Button = styled.button`
-  background-color: #075985;
+  background-color: ${theme.colors.goldColor};
+  justify-content: end;
   border-radius: 5px;
   border: none;
   color: white;

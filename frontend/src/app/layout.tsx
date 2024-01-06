@@ -7,8 +7,11 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Martim Fuhr | Portfolio',
-  description: 'Welcome to my Portfolio',
+  title: 'Scrapbook',
+  description: 'Your todo list!',
+  icons: {
+    icon: '/favicon/favicon.png',
+  },
 }
 
 export default function RootLayout({
@@ -19,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <StyledComponentsRegistry>
-        <body className="bg-sky-400 min-h-screen flex flex-col">
+        <body
+          className="min-h-screen flex flex-col"
+          style={{ backgroundColor: '#333' }}
+        >
           <Header />
           {children}
           <Footer />

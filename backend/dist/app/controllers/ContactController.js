@@ -1,4 +1,10 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Contact = require('../models/Contact'); var _Contact2 = _interopRequireDefault(_Contact);
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _Contact = require('../models/Contact');
+var _Contact2 = _interopRequireDefault(_Contact);
 
 class ContactController {
   async index(request, response) {
@@ -11,16 +17,16 @@ class ContactController {
   }
 
   async store(request, response) {
-    const { name, phone, email, comment } = request.body;
-    return response.json(await _Contact2.default.create({ name, phone, email, comment }));
+    const { name, comment } = request.body;
+    return response.json(await _Contact2.default.create({ name, comment }));
   }
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, phone, email, comment } = request.body;
+    const { name, comment } = request.body;
     return response.json(
       await _Contact2.default.create(
-        { name, phone, email, comment },
+        { name, comment },
         {
           where: { id },
           returning: true,
@@ -36,4 +42,4 @@ class ContactController {
   }
 }
 
-exports. default = new ContactController();
+exports.default = new ContactController();

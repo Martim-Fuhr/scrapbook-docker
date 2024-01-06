@@ -1,13 +1,18 @@
 import axios from 'axios'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 
-import { FormContainer, Button } from './styles'
+import {
+  FormWrapper,
+  FormContainer,
+  Button,
+  ButtonForm,
+  HeadForm,
+} from './styles'
 
 interface User {
   id: number
   name: string
-  email: string
   comment: string
 }
 
@@ -15,8 +20,8 @@ interface ListUserProps {
   users: User[]
   setUsers: React.Dispatch<React.SetStateAction<User[]>>
   setOnEdit: React.Dispatch<React.SetStateAction<User | null>>
-  getUsers: () => Promise<void> // Função assíncrona que retorna uma Promise
-  onEdit: User | null // Objeto de usuário ou nulo
+  getUsers: () => Promise<void>
+  onEdit: User | null
 }
 
 export default function UserRegistration({
@@ -24,6 +29,7 @@ export default function UserRegistration({
   onEdit,
   setOnEdit,
 }: ListUserProps) {
+  const [isFormVisible, setIsFormVisible] = useState(false)
   const ref = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -32,7 +38,6 @@ export default function UserRegistration({
 
       if (user) {
         ;(user.name as unknown as HTMLInputElement).value = onEdit.name
-        ;(user.email as HTMLInputElement).value = onEdit.email
         ;(user.comment as HTMLInputElement).value = onEdit.comment
       }
     }
@@ -46,7 +51,6 @@ export default function UserRegistration({
     if (
       !user ||
       !(user.name as unknown as HTMLInputElement).value ||
-      !(user.email as HTMLInputElement).value ||
       !(user.comment as HTMLInputElement).value
     ) {
       return toast.warn('Preencha todos os campos!')
@@ -56,7 +60,6 @@ export default function UserRegistration({
       try {
         const { data } = await axios.put(`http://localhost:3030/${onEdit.id}`, {
           name: (user.name as unknown as HTMLInputElement).value,
-          email: (user.email as HTMLInputElement).value,
           comment: (user.comment as HTMLInputElement).value,
         })
 
@@ -72,7 +75,6 @@ export default function UserRegistration({
       try {
         const { data } = await axios.post('http://localhost:3030', {
           name: (user.name as unknown as HTMLInputElement).value,
-          email: (user.email as HTMLInputElement).value,
           comment: (user.comment as HTMLInputElement).value,
         })
         toast.success(data)
@@ -87,7 +89,6 @@ export default function UserRegistration({
 
     if (user) {
       ;(user.name as unknown as HTMLInputElement).value = ''
-      ;(user.email as HTMLInputElement).value = ''
       ;(user.comment as HTMLInputElement).value = ''
     }
 
@@ -96,23 +97,33 @@ export default function UserRegistration({
   }
 
   return (
-    <FormContainer ref={ref} onSubmit={handleSubmit}>
-      <div className="w-full md:w-2/5">
-        <label>Nome:</label>
-        <input name="name" className="h-10 w-full rounded-md" />
-      </div>
+    <>
+      <HeadForm>
+        <h2>Suas Tarefas:</h2>
+        <ButtonForm onClick={() => setIsFormVisible(!isFormVisible)}>
+          {!isFormVisible ? 'Ocultar Formulário' : 'Adicionar Tarefa'}
+        </ButtonForm>
+      </HeadForm>
+      <FormWrapper style={{ display: isFormVisible ? 'none' : 'flex' }}>
+        <FormContainer ref={ref} onSubmit={handleSubmit}>
+          <div className="w-full">
+            <label>Task:</label>
+            <input className="input-comment" name="comment" />
+          </div>
 
-      <div className="w-full md:w-7/12">
-        <label>E-mail:</label>
-        <input name="email" type="email" />
-      </div>
+          <div className="w-full">
+            <label>Atribuida à:</label>
+            <input name="name" className="h-10 w-full rounded-md" />
+          </div>
 
-      <div className="w-full">
-        <label>Comentário:</label>
-        <input className="input-comment" name="comment" />
-      </div>
-
-      <Button type="submit">SALVAR</Button>
-    </FormContainer>
+          <Button
+            type="submit"
+            onClick={() => setIsFormVisible(!isFormVisible)}
+          >
+            ADICIONAR
+          </Button>
+        </FormContainer>
+      </FormWrapper>
+    </>
   )
 }

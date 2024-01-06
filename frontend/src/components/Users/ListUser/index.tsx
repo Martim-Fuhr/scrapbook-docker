@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Wrapper } from './styles'
 import { FaTrash, FaEdit, FaUser } from 'react-icons/fa'
@@ -7,12 +7,11 @@ import { toast } from 'react-toastify'
 interface User {
   id: number
   name: string
-  email: string
   comment: string
 }
 
 interface ListUserProps {
-  users: User[] // Um array de objetos de usuário
+  users: User[]
   setUsers: React.Dispatch<React.SetStateAction<User[]>>
   setOnEdit: React.Dispatch<React.SetStateAction<User | null>>
 }
@@ -45,19 +44,23 @@ export default function ListUser({
       <ul>
         {users.map((item, i) => (
           <li key={i}>
-            <div className="icon-name">
-              <FaUser className="icon-user" />
-            </div>
-
             <div className="write-wrapper">
-              <span className="name">{item.name}:</span>
               <span className="comment">{item.comment}</span>
+              <p>
+                Atribuida a:
+                <span className="name">{item.name}</span>
+              </p>
             </div>
 
             <div className="flex justify-between items-end flex-col">
-              <span className="edit hover:cursor-pointer">
+              <button
+                onClick={() => {
+                  handleEdit(item)
+                }}
+                className="edit hover:cursor-pointer"
+              >
                 <FaEdit onClick={() => handleEdit(item)} />
-              </span>
+              </button>
               <span className="delete hover:cursor-pointer">
                 <FaTrash onClick={() => handleDelete(item.id)} />
               </span>

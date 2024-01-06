@@ -1,4 +1,10 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _sequelize = require('sequelize');
+var _sequelize2 = _interopRequireDefault(_sequelize);
 
 class Contact extends _sequelize.Model {
   static init(sequelize) {
@@ -11,14 +17,6 @@ class Contact extends _sequelize.Model {
           primaryKey: true,
         },
         name: {
-          type: _sequelize2.default.DataTypes.STRING,
-          allowNull: false,
-        },
-        phone: {
-          type: _sequelize2.default.DataTypes.INTEGER,
-          allowNull: false,
-        },
-        email: {
           type: _sequelize2.default.DataTypes.STRING,
           allowNull: false,
         },
@@ -37,4 +35,4 @@ class Contact extends _sequelize.Model {
   }
 }
 
-exports. default = Contact;
+exports.default = Contact;

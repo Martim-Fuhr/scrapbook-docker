@@ -20,31 +20,21 @@ export const Wrapper = styled.nav`
     border-radius: 5px;
     background-color: ${theme.colors.border};
 
-    .icon-name {
-      justify-content: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 10px 0 4px;
-
-      .icon-user {
-        width: 50px;
-        height: auto;
-      }
+    p {
+      text-align: end;
+      font-size: 14px;
     }
 
     .write-wrapper {
       width: 100%;
       display: flex;
+      justify-content: space-around;
       flex-direction: column;
     }
 
     .name {
       text-transform: capitalize;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: 200px;
+      padding: 0 4px;
       font-weight: 500;
     }
   }

@@ -1,16 +1,21 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Profile } from './styles'
-import { toast, ToastContainer } from 'react-toastify'
+import { Wrapper } from './styles'
 import axios from 'axios'
 
 import UserRegistration from '@/components/Users/UserRegistration'
 import ListUser from '@/components/Users/ListUser'
+interface User {
+  id: number
+  name: string
+  comment: string
+}
 
 export function MainContent() {
-  const [users, setUsers] = useState([])
-  const [onEdit, setOnEdit] = useState(null)
+  const [isFormVisible, setIsFormVisible] = useState(false)
+  const [users, setUsers] = useState<User[]>([])
+  const [onEdit, setOnEdit] = useState<User | null>(null)
 
   const getUsers = async () => {
     try {
@@ -25,21 +30,18 @@ export function MainContent() {
 
   useEffect(() => {
     getUsers()
-  }, [setUsers])
+  }, [])
   return (
-    <Profile>
-      <h2>Bem-vindo à pagina de Pesquisa de Satisfação!</h2>
-      <h3>
-        Fique à vontade para escrever o que a Facilita System tem Sido para você
-        e sua empresa 🤍
-      </h3>
+    <Wrapper>
       <UserRegistration
+        users={users}
+        setUsers={setUsers}
         onEdit={onEdit}
         setOnEdit={setOnEdit}
         getUsers={getUsers}
       />
       <ListUser setOnEdit={setOnEdit} users={users} setUsers={setUsers} />
-    </Profile>
+    </Wrapper>
   )
 }
 

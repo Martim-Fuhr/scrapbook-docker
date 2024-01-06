@@ -6,6 +6,8 @@ export default {
     primary: '#092020',
     secondary: '#0D3030',
 
+    goldColor: '#b28f00',
+
     background: '#333',
     backgroundSecondary: '#222',
     text: '#FCFFFC',

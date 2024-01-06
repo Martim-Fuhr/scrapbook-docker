@@ -1,10 +1,7 @@
-import Contact from '../Contact'
-
 export function Footer() {
   return (
-    <footer className="flex justify-center flex-col px-24">
-      <Contact />
-      <p className="text-sm text-center #e5e7eb">© 2023, FacilitSystem</p>
+    <footer className="flex justify-center bottom-0 fixed right-0 left-0 flex-col px-24">
+      <p className="text-sm text-center">© 2023, FacilitaSystem</p>
     </footer>
   )
 }

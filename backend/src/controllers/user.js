@@ -11,9 +11,9 @@ export const getUsers = (_, response) => {
 };
 
 export const addUser = (req, res) => {
-  const querydb = 'INSERT INTO users(`name`, `email`, `comment`) VALUES(?)';
+  const querydb = 'INSERT INTO users(`name`, `comment`) VALUES(?)';
 
-  const values = [req.body.name, req.body.email, req.body.comment];
+  const values = [req.body.name, req.body.comment];
 
   database.query(querydb, [values], err => {
     if (err) return res.json(err);
@@ -23,10 +23,9 @@ export const addUser = (req, res) => {
 };
 
 export const updateUser = (req, res) => {
-  const querydb =
-    'UPDATE users SET `name` = ?, `email` = ?, `comment` = ? WHERE `id` = ?';
+  const querydb = 'UPDATE users SET `name` = ?, `comment` = ? WHERE `id` = ?';
 
-  const values = [req.body.name, req.body.email, req.body.comment];
+  const values = [req.body.name, req.body.comment];
 
   database.query(querydb, [...values, req.params.id], err => {
     if (err) return res.json(err);
