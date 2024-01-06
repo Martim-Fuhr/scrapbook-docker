@@ -1,6 +1,6 @@
-# Api Facilita Systems:
+# SCRAPBOOK: Your Todo List
 
-- Projeto feito para adicionar comentários á respeito da empresa.
+- Projeto feito para a gestão de tarefas á respeito da empresa.
 
 ## Instalação
 
