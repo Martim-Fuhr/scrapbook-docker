@@ -4,7 +4,7 @@
 
 ## Instalação
 
-1. Clone o repositório: `git clone https://github.com/Martim-Fuhr/api-fullstack-facilita`
+1. Clone o repositório: `git clone https://github.com/Martim-Fuhr/scrapbook-docker`
 2. Navegue até a raiz do projeto.
 3. Instale as dependências: `docker-compose up --build`
 
